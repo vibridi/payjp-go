@@ -71,6 +71,7 @@ func (t TokenService) Create(card Card) (*TokenResponse, error) {
 		return nil, err
 	}
 	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	request.Header.Add("X-Payjp-Direct-Token-Generate", "true")
 	request.Header.Add("Authorization", t.service.apiKey)
 
 	return parseToken(respToBody(t.service.Client.Do(request)))
